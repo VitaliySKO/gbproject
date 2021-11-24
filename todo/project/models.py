@@ -13,12 +13,12 @@ class Project(models.Model):
 
 
 class TODO(models.Model):
-    project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     name_todo = models.CharField(max_length=64)
     text_todo = models.TextField()
     date_create_todo = models.DateTimeField(auto_now_add=True)
     date_update_todo = models.DateTimeField(auto_now=True)
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     status_todo = models.BooleanField(default=True)
 
     def __str__(self):
