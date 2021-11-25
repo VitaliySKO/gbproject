@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, SlugRelatedField
 
 from users.serialiazers import CustomUserModelSerializer
 from .models import Project, TODO
@@ -13,7 +13,8 @@ class ProjectModelSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class TodoModelSerializer(HyperlinkedModelSerializer):
+class TodoModelSerializer(ModelSerializer):
+    project = SlugRelatedField(slug_field="name_project", read_only=True)
 
     class Meta:
         model = TODO
