@@ -1,9 +1,10 @@
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .models import Project, TODO
 from .serialiazers import ProjectModelSerializer, TodoModelSerializer
 from rest_framework.pagination import LimitOffsetPagination
@@ -25,7 +26,7 @@ class TodoLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 20
 
 
-class TodoModelViewSet(ModelViewSet):
+class TodoModelViewSet(ListModelMixin, CreateModelMixin, GenericViewSet):
     queryset = TODO.objects.all()
     serializer_class = TodoModelSerializer
     pagination_class = TodoLimitOffsetPagination
