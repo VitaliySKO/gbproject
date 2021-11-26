@@ -40,18 +40,6 @@ class TodoDetailModelView(APIView):
         serializer = TodoModelSerializer(todo)
         return Response(serializer.data)
 
-    # def put(self, request, pk):
-    #     # partial = kwargs.pop('partial', False)
-    #     todo = get_object_or_404(TODO.objects.all(), pk=pk)
-    #     serializer = TodoModelSerializer(todo, data=request.data, partial=True)
-    #     serializer.is_valid(raise_exception=True)
-    #     todo.perform_update(serializer)
-    #
-    #     if getattr(todo, '_prefetched_objects_cache', None):
-    #         todo._prefetched_objects_cache = {}
-    #
-    #     return Response(serializer.data)
-
     def delete(self, request, pk):
         todo = get_object_or_404(TODO.objects.all(), pk=pk)
         todo.status_todo = True
