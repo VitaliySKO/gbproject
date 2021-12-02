@@ -7,11 +7,11 @@ from rest_framework.mixins import CreateModelMixin, ListModelMixin, UpdateModelM
 
 
 class UserLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 1
+    default_limit = 10
 
 
 class CustomUserModelViewSet(ListModelMixin, UpdateModelMixin, RetrieveModelMixin, GenericViewSet):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserModelSerializer
-    pagination_class = UserLimitOffsetPagination
+    # pagination_class = UserLimitOffsetPagination

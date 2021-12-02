@@ -10,26 +10,28 @@ from rest_framework.pagination import LimitOffsetPagination
 from .filters import ProjectFilter, TodoFilter
 
 
-class ProjectLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 10
+# class ProjectLimitOffsetPagination(LimitOffsetPagination):
+#     default_limit = 10
 
 
 class ProjectModelViewSet(ModelViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
-    pagination_class = ProjectLimitOffsetPagination
-    filterset_class = ProjectFilter
+    # pagination_class = ProjectLimitOffsetPagination
+    # filterset_class = ProjectFilter
 
 
-class TodoLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 20
+# class TodoLimitOffsetPagination(LimitOffsetPagination):
+#     default_limit = 20
 
 
 class TodoModelViewSet(ModelViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = TODO.objects.all()
     serializer_class = TodoModelSerializer
-    pagination_class = TodoLimitOffsetPagination
-    filterset_class = TodoFilter
+    # pagination_class = TodoLimitOffsetPagination
+    # filterset_class = TodoFilter
 
 
 class TodoDetailModelView(APIView):
