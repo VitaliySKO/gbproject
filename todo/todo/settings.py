@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'users',
     'corsheaders',
     'project',
-    'django_filters'
+    'django_filters',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -137,12 +138,22 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
+# from rest_framework.permissions import IsAuthenticated, DjangoModelPermissionsOrAnonReadOnly
+
 REST_FRAMEWORK = {
+    # 'DEFAULT_RENDERER_CLASSES': ['rest_framework.renders.JSONRender'],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+
     # 'DEFAULT_RENDERER_CLASSES': (
     #     'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
     #     'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
     # ),
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 100
 }
