@@ -10,7 +10,8 @@ class UserLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 10
 
 
-class CustomUserModelViewSet(ListModelMixin, UpdateModelMixin, RetrieveModelMixin, GenericViewSet):
+class CustomUserModelViewSet(ModelViewSet):
+    #CustomUserModelViewSet(ListModelMixin, UpdateModelMixin, RetrieveModelMixin, GenericViewSet)
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserModelSerializer
