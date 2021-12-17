@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'project',
     'django_filters',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
 # from rest_framework.permissions import IsAuthenticated, DjangoModelPermissionsOrAnonReadOnly
+# from rest_framework.versioning import QueryParameterVersioning
 
 REST_FRAMEWORK = {
     # 'DEFAULT_RENDERER_CLASSES': ['rest_framework.renders.JSONRender'],
@@ -138,6 +140,8 @@ REST_FRAMEWORK = {
     #     'rest_framework.authentication.BasicAuthentication',
     #     'rest_framework.authentication.TokenAuthentication',
     # ],
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning'
 
     # 'DEFAULT_RENDERER_CLASSES': (
     #     'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
